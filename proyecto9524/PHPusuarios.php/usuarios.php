@@ -2,7 +2,10 @@
 <html lang="en">
 
 <head>
+
     <style>
+    <style>
+
     /* Estilos para la tabla */
     table {
         width: 100%;
@@ -45,21 +48,12 @@
         border-radius: 3px;
     }
 
-    #tipo_usuario {
-        width: calc(20% - 20px);
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-    }
-    
     #usuario {
         width: calc(20% - 20px);
         padding: 8px;
         border: 1px solid #ccc;
         border-radius: 3px;
     }
-
-
 
 
     input[type="submit"] {
@@ -74,7 +68,7 @@
         /* Cambia el color del texto a blanco */
     }
 
-    #navegarBoton {
+    button {
 
         padding: 10px;
         background-color: green;
@@ -97,32 +91,126 @@
         margin-left: 3%;
         /* Cambia el color del texto a blanco */
     }
+
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        left: 40px;
+    }
+
+    header {
+        padding: 100px;
+        margin-left: auto;
+        background-color: orange;
+        color: black;
+        padding: 30px;
+    }
+
+    nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    nav ul li {
+        display: inline;
+        margin-right: 20px;
+    }
+
+    nav ul li a {
+        color: black;
+        text-decoration: none;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    /* Estilos para el formulario desplegable */
+    /* Estilos para los formularios */
+
+    .formulario {
+        margin: 5px;
+        padding: 30px;
+        border: 5px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .formulario h2 {
+        margin-top: 0;
+        font-size: 24px;
+    }
+
+    .formulario form {
+        display: grid;
+        gap: 10px;
+    }
+
+    #tipo_usuario {
+        width: calc(20% - 20px);
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    .formulario label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .formulario input[type="text"],
+    .formulario input[type="email"],
+    .formulario input[type="select"] {
+        width: calc(20% - 20px);
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    .formulario input[type="submit"] {
+        background-color: green;
+        color: black;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        width: calc(5% - 10px);
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    .formulario input[type="submit"] {
+        background-color: #333;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .formulario input[type="submit"]:hover {
+        background-color: #555;
+    }
     </style>
+    </style>
+
     <meta charset="UTF-8">
-    <title>Menú equipos</title>
+    <title>Menú usuarios</title>
     <meta name="viewport" content="width=device-width, initial-scale=3.0">
-    <link rel="stylesheet" href="css/menuEquipos.css">
 
 </head>
 
 <body>
     <header>
         <div class="four columns">
-            <img src="img/logo.PNG" id="logo">
+            <img src="logo.PNG" id="logo">
 
         </div>
-        <button id="navegarBoton">Atras</button>
-        <!-- Script JavaScript para la navegación -->
-        <script>
-        // Obtén una referencia al botón
-        var botonNavegar = document.getElementById("navegarBoton");
+        <button onclick="regresar()">Regresar</button>
 
-        // Agrega un controlador de eventos para el clic en el botón
-        botonNavegar.addEventListener("click", function() {
-            // Navega a la otra página
-            window.location.href =
-                "Menu.php"; // Reemplaza "otra_pagina.html" con la URL de la página a la que deseas navegar.
-        });
+        <script>
+        function regresar() {
+            // Utilizar la función para retroceder en la historia del navegador
+            window.history.back();
+        }
         </script>
 
         <div id="mensaje-exito" style="display: none; color: green;">Operación exitosa</div>
@@ -138,10 +226,10 @@
         </script>
         <nav>
             <ul>
-                <li><a href="#" data-form="formulario1">Nuevo tipo de equipo</a></li>
-                <li><a href="#" data-form="formulario2">Listado de equipos</a></li>
-                <li><a href="#" data-form="formulario3">Crear un equipo en el sistema</a></li>
-                <li><a href="#" data-form="formulario4">Buscar equipo</a></li>
+                <li><a href="#" data-form="formulario1">Nuevo tipo de usuario</a></li>
+                <li><a href="#" data-form="formulario2">Listado de usuarios</a></li>
+                <li><a href="#" data-form="formulario3">Crear nuevo usuario</a></li>
+                <li><a href="#" data-form="formulario4">Buscar usuario</a></li>
 
             </ul>
         </nav>
@@ -149,18 +237,18 @@
     </header>
     <main>
         <div id="formulario1" class="formulario hidden">
-            <h2>Crear tipo de quipo</h2>
-            <form action="crearTipoEquipo.php" method="post">
-                <label for="equipo">Tipo de equipo:</label>
-                <input type="text" id="equipo" name="equipo" require>
+            <h2>Crear tipo de usuario</h2>
+            <form action="crearTipoUsuario.php" method="post">
+                <label for="usuario">Tipo de usuario:</label>
+                <input type="text" id="usuario" name="usuario" require>
                 <input type="submit" value="Enviar">
                 <!-- Campos del formulario 1 -->
             </form>
 
         </div>
         <div id="formulario2" class="formulario hidden">
-            <form action="listaEquipos.php" method="post">
-                <button id="navegarBotonLista">Oprimir para ver el listado de equipos</button>
+            <form action="listaUsuarios.php" method="post">
+                <button id="navegarBotonLista">Oprimir para ver el listado de usuarios</button>
                 <!-- Script JavaScript para la navegación -->
                 <script>
                 // Obtén una referencia al botón
@@ -170,16 +258,16 @@
                 botonNavegar.addEventListener("click", function() {
                     // Navega a la otra página
                     window.location.href =
-                        "Menu.php"; // Reemplaza "otra_pagina.html" con la URL de la página a la que deseas navegar.
+                        "listaUsuarios.php"; // Reemplaza "otra_pagina.html" con la URL de la página a la que deseas navegar.
                 });
                 </script>
 
             </form>
         </div>
         <div id="formulario3" class="formulario hidden">
-            <h2>Crear un nuevo equipo</h2>
-            <form action="crearEquipo.php" method="post">
-                <label for="tipo_usuario">Usuario/Empleado/Cliente :</label>
+            <h2>Crear un nuevo usuario</h2>
+            <form action="crearUsuario.php" method="post">
+                <label for="tipo_usuario">Selecciones el tipo de usuario :</label>
                 <select name="tipo_usuario" id="tipo_usuario">
                     <?php
                 $serverName = "carlosTorres";
@@ -196,7 +284,7 @@
                 }
                 
                 // Llama al procedimiento almacenado ObtenerUsuarios
-                $sql = "EXEC ObtenerTipoUsuario";
+                $sql = "EXEC ObtenerTipoUsuarios";
                 $query = sqlsrv_query($conn, $sql);
                 
                 if ($query === false) {
@@ -205,7 +293,7 @@
                 
                 if (sqlsrv_has_rows($query)) {
                     while ($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
-                        echo "<option value='" . $row['id_usuario'] . "'>" . $row['nom_usuario'] . "</option>";
+                        echo "<option value='" . $row['idtipo_usuario'] . "'>"  .  $row['tipo_usuario'] . "</option>";
                     }
                 } else {
                     echo "0 resultados";
@@ -215,104 +303,17 @@
                 sqlsrv_close($conn);
                 ?>
 
-
                 </select>
-
-
-
-
-                <label for="usuario">Ususario creador :</label>
-                <select name="usuario" id="usuario">
-                    <?php
-$serverName = "carlosTorres";
-$connectionOptions = array(
-    "Database" => "9524colombia",
-    "Uid" => "sa",
-    "PWD" => "1992"
-);
-
-$conn = sqlsrv_connect($serverName, $connectionOptions);
-
-if (!$conn) {
-    die(print_r(sqlsrv_errors(), true));
-}
-
-// Llama al procedimiento almacenado ObtenerUsuarios
-$sql = "EXEC ObtenerUsuarios";
-$query = sqlsrv_query($conn, $sql);
-
-if ($query === false) {
-    die(print_r(sqlsrv_errors(), true));
-}
-
-if (sqlsrv_has_rows($query)) {
-    while ($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
-        echo "<option value='" . $row['id'] . "'>" . $row['username'] . "</option>";
-    }
-} else {
-    echo "0 resultados";
-}
-
-// Cierra la conexión a SQL Server
-sqlsrv_close($conn);
-?>
-
-
-
-                </select>
-
-                <label for="equipo">Selecciones el equipo:</label>
-                <select name="equipo" id="equipo">
-                    <?php
-$serverName = "carlosTorres";
-$connectionOptions = array(
-    "Database" => "9524colombia",
-    "Uid" => "sa",
-    "PWD" => "1992"
-);
-
-$conn = sqlsrv_connect($serverName, $connectionOptions);
-
-if (!$conn) {
-    die(print_r(sqlsrv_errors(), true));
-}
-
-// Llama al procedimiento almacenado ObtenerTiposEquipo
-$sql = "EXEC ObtenerTiposEquipo";
-$query = sqlsrv_query($conn, $sql);
-
-if ($query === false) {
-    die(print_r(sqlsrv_errors(), true));
-}
-
-if (sqlsrv_has_rows($query)) {
-    while ($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
-        echo "<option value='" . $row['id_equipo'] . "'>" . $row['tipo_equipo'] . "</option>";
-    }
-} else {
-    echo "0 resultados";
-}
-
-// Cierra la conexión a SQL Server
-sqlsrv_close($conn);
-?>
-                </select>
-                <label for="nombre">Nombre del equipo:</label>
+                <label for="nombre">Nombre del usuario:</label>
                 <input type="text" id="nombre" name="nombre" required>
-                <label for="numero">Numero o serial:</label>
-                <input type="text" id="numero" name="numero" require>
-                <label for="fecha_compra">Fecha de compra:</label>
-                <input type="date" id="fecha_compra" name="fecha_compra" require>
-                <label for="fecha_inicio">Fecha inicio grantia:</label>
-                <input type="date" id="fecha_inicio" name="fecha_inicio" require>
-                <label for="fecha_final">Fecha final grantia:</label>
-                <input type="date" id="fecha_final" name="fecha_final" require>
-                <label for="imei1">Imei1 grantia:</label>
-                <input type="text" id="imei1" name="imei1" require>
-                <label for="imei2">Imei2 grantia:</label>
-                <input type="text" id="imei2" name="imei2" require>
-                <label for="estado_equipo">Estado:</label>
-                <input type="text" id="estado_equipo" name="estado_equipo" require>
+                <label for="telefono">Telefono:</label>
+                <input type="text" id="telefono" name="telefono" require>
+                <label for="correo">Correo:</label>
+                <input type="text" id="correo" name="correo" require>
+                <label for="direccion">Direccion:</label>
+                <input type="text" id="direccion" name="direccion" require>
+                <label for="documento">Documento o NIT:</label>
+                <input type="text" id="documento" name="documento" require>
                 <input type="submit" value="Enviar">
 
                 <!-- Campos del formulario 3 -->

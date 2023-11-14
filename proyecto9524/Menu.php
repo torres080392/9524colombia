@@ -72,7 +72,7 @@
                     <div class="card">
                         <img src="img/usuarios.png" class="imagen-usuario u-full-width">
                         <div class="info-card">
-                            <h4>Gestion de usuarios</h4>
+                            <h4>Gestion de accesos</h4>
 
                             <a href="#" class="u-full-width button-primary button" data-id="2">Gestionar</a>
                         </div>
@@ -105,9 +105,9 @@
                     <div class="card">
                         <img src="img/empleados.png" class="imagen-curso u-full-width">
                         <div class="info-card">
-                            <h4>Gestion de empleados</h4>
+                            <h4>Gestion de usuarios</h4>
 
-                            <a href="empleados.php" class="u-full-width button-primary button input " data-id="5">Gestionar</a>
+                            <a href="PHPusuarios.php/usuarios.php" class="u-full-width button-primary button input " data-id="5">Gestionar</a>
                         </div>
                     </div> <!--.card-->
                 </div>

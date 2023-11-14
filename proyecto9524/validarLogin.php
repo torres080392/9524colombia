@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: login_error.php");
    
      } elseif ($userRole === 'admin') {
-         header("Location: Menu.php");
+         header("Location: Menu/Menu.php");
      } elseif ($userRole === 'usuarios') {
          header("Location: Menu.php");
      }

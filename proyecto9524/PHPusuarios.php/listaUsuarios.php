@@ -102,14 +102,14 @@ header {
         
     </style>
     <meta charset="UTF-8">
-    <title>Menú empleados</title>
+    <title>Menú usuarios</title>
     <meta name="viewport" content="width=device-width, initial-scale=3.0">
 
 </head>
 <body>
     <header>
         <div class="four columns">
-            <img src="img/logo.PNG" id="logo">
+            <img src="logo.PNG" id="logo">
          
         </div>
         <button id="navegarBoton">Atras</button>
@@ -121,7 +121,7 @@ header {
             // Agrega un controlador de eventos para el clic en el botón
             botonNavegar.addEventListener("click", function() {
                 // Navega a la otra página
-                window.location.href = "equipos.php"; // Reemplaza "otra_pagina.html" con la URL de la página a la que deseas navegar.
+                window.location.href = "usuarios.php"; // Reemplaza "otra_pagina.html" con la URL de la página a la que deseas navegar.
             });
         </script>
 
@@ -143,22 +143,17 @@ header {
        
         <div id="formulario2" class="formulario hidden">
             <form action="" method="post">
-                <h2>Tabla de equipos</h2>
+                <h2>Tabla de usuarios</h2>
 
                 <table>
                     <tr>
-                        <th>Id del equipo</th>
-                        <th>Id usuario</th>
-                        <th>Id user logueado</th>
-                        <th>Id del tipo de equipo</th>
-                        <th>Nombre del equipo</th>
-                        <th>Serial/Servitage </th>
-                        <th>Fecha compra</th>
-                        <th>Inicia garantia</th>
-                        <th>Termina garantia</th>
-                        <th>imei1</th>
-                        <th>imei2</th>
-                        <th>Estado</th>
+                        <th>Id de usuario</th>
+                        <th>Id tipo usuario</th>
+                        <th>Nombre usuario</th>
+                        <th>Telefono</th>
+                        <th>Correo</th>
+                        <th>Direccion </th>
+                        <th>Documento o NIT </th>
                         
                     </tr>
                     <?php
@@ -177,34 +172,27 @@ if (!$conn) {
 }
 
 // Llamar al procedimiento almacenado "ObtenerEquipos" con parámetros
-$id_equipo = 1;
-$usuario_id_usuario = 2; // Reemplaza con el valor adecuado
-$usuarios_id = 3; // Reemplaza con el valor adecuado
-$tipo_equipo_id_equipo = 4; // Reemplaza con el valor adecuado
-$nom_equipo = "nombre_del_equipo"; // Reemplaza con el valor adecuado
-$num_equipo = "numero_de_equipo"; // Reemplaza con el valor adecuado
-$fecha_compra = "2023-11-07 00:00:00.000"; // Reemplaza con el valor adecuado
-$fecha_inicio_garan = "2023-11-07 00:00:00.000"; // Reemplaza con el valor adecuado
-$fecha_final_garan = "2023-11-07 00:00:00.000"; // Reemplaza con el valor adecuado
-$imei1 = "imeis1"; // Reemplaza con el valor adecuado
-$imei2 = "imeis2"; // Reemplaza con el valor adecuado
-$estado_equipo = "nuevo"; // Reemplaza con el valor adecuado
+$id_usuario = 1;
+$tipo_usuario_idtipo_usuario = 2; // Reemplaza con el valor adecuado
+$nom_usuario = "nombre usuario"; // Reemplaza con el valor adecuado
+$corr_usuario= "correo usuario"; // Reemplaza con el valor adecuado
+$tel_usuario = "nombre_del_equipo"; // Reemplaza con el valor adecuado
+$dir_usuario = "numero_de_equipo"; // Reemplaza con el valor adecuado
+$doc_usuario = "socumento_de_equipo"; // Reemplaza con el valor adecuado
 
-$sql = "{CALL ObtenerEquipos(?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)}";
+
+
+$sql = "{CALL ObtenerUsuario(?, ?, ?, ?, ?, ?,?)}";
 
 $params = array(
-    array($id_equipo, SQLSRV_PARAM_IN),
-    array($usuario_id_usuario, SQLSRV_PARAM_IN),
-    array($usuarios_id, SQLSRV_PARAM_IN),
-    array($tipo_equipo_id_equipo, SQLSRV_PARAM_IN),
-    array($nom_equipo, SQLSRV_PARAM_IN),
-    array($num_equipo, SQLSRV_PARAM_IN),
-    array($fecha_compra, SQLSRV_PARAM_IN),
-    array($fecha_inicio_garan, SQLSRV_PARAM_IN),
-    array($fecha_final_garan, SQLSRV_PARAM_IN),
-    array($imei1, SQLSRV_PARAM_IN),
-    array($imei2, SQLSRV_PARAM_IN),
-    array($estado_equipo, SQLSRV_PARAM_IN)
+    array($id_usuario, SQLSRV_PARAM_IN),
+    array($tipo_usuario_idtipo_usuario, SQLSRV_PARAM_IN),
+    array($nom_usuario, SQLSRV_PARAM_IN),
+    array($corr_usuario, SQLSRV_PARAM_IN),
+    array($tel_usuario, SQLSRV_PARAM_IN),
+    array($dir_usuario, SQLSRV_PARAM_IN),
+    array($doc_usuario, SQLSRV_PARAM_IN)
+   
 );
 
 $result = sqlsrv_query($conn, $sql, $params);
@@ -216,18 +204,13 @@ if ($result === false) {
         // Resto del código para recorrer y mostrar los datos en la tabla
         while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
             echo "<tr>";
-            echo "<td>" . $row["id_equipo"] . "</td>";
-            echo "<td>" . $row["usuario_id_usuario"] . "</td>";
-            echo "<td>" . $row["usuarios_id"] . "</td>";
-            echo "<td>" . $row["tipo_equipo_id_equipo"] . "</td>";
-            echo "<td>" . $row["nom_equipo"] . "</td>";
-            echo "<td>" . $row["num_equipo"] . "</td>";
-            echo "<td>". $row["fecha_compra"]->format("d-m-Y")."</td>";
-            echo "<td>". $row["fecha_inicio_garan"]->format("d-m-Y")."</td>";
-            echo "<td>".$row["fecha_final_garan"]->format("d-m-Y")."</td>";
-            echo "<td>" . $row["imei1"] . "</td>";
-            echo "<td>" . $row["imei2"] . "</td>";
-            echo "<td>" . $row["estado_equipo"] . "</td>";
+            echo "<td>" . $row["id_usuario"] . "</td>";
+            echo "<td>" . $row["tipo_usuario_idtipo_usuario"] . "</td>";
+            echo "<td>" . $row["nom_usuario"] . "</td>";
+            echo "<td>" . $row["corr_usuario"] . "</td>";
+            echo "<td>" . $row["tel_usuario"] . "</td>";
+            echo "<td>" . $row["dir_usuario"] . "</td>";
+            echo "<td>" . $row["doc_usuario"] . "</td>";
             echo "</tr>";
         }
     } else {
